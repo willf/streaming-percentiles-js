@@ -41,14 +41,9 @@ tape("GK e=0.1 quantiles", function(test) {
 });
 
 tape("GK e=0.1 stress", function(test) {
-    var seq = [];
-    for (var i = 0; i < 10000; ++i)
-        seq.push(Math.random());
-
-    var epsilon = 0.1;
-    var gk = new sp.GK(epsilon);
-    for (var i = 0; i < seq.length; ++i) {
-        gk.insert(seq[i]);
+    var gk = new sp.GK(0.1);
+    for (var i = 0; i < 10000; ++i) {
+        gk.insert(Math.random());
         for (var q = 0.1; q < 1; q += 0.1) {
             var val = gk.quantile(q);
             // We're just trying to make sure gk.quantile
