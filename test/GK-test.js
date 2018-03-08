@@ -25,11 +25,14 @@ tape("GK e=0.1 stress", function(test) {
     var arr = [];
     for (var i = 0; i < 1000; ++i)
         arr.push(Math.random());
+
     var gk = new sp.GK(0.1);
     for (var i = 0; i < arr.length; ++i) {
         gk.insert(arr[i]);
-        var q = gk.quantile(0.5);
-        console.log(q);
+        for (var q = 0.1; q < 1; q += 0.1) {
+            var val = gk.quantile(q);
+            test.ok(val > 0 && val < 1);
+        }
     }
     test.end();
 });
