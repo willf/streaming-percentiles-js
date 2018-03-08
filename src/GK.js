@@ -34,10 +34,19 @@ export default class GK {
     // We must always keep the first & last nodes as those
     // are global min/max
     for (var i = this.S.length - 2; i >= 1; --i) {
-      var g_i_star = this.S[i].g; // TODO: This is not correct.
-      if (bands[this.S[i].delta] <= bands[this.S[i+1].delta] &&
-        (g_i_star + this.S[i+1].g + this.S[i+1].delta) < two_epsilon_n) {
-        this._delete_tuple(i);
+      if (bands[this.S[i].delta] <= bands[this.S[i+1].delta]) {
+        var start_indx = i;
+        var g_i_star = this.S[i].g;
+        while (start_indx >= 2 && bands[this.S[start_indx-1].delta] < bands[this.S[i].delta]) {
+          --start_indx;
+          g_i_star += this.S[start_indx].g;
+        }
+        if ((g_i_star + this.S[i+1].g + this.S[i+1].delta) < two_epsilon_n) {
+          // The below is a delete_tuples([start_indx, i]) operation
+          var merged = {v: this.S[i+1].v, g: g_i_star + this.S[i+1].g, delta: this.S[i+1].delta};
+          this.S.splice(start_indx, 2 + (i - start_indx), merged);
+          i = start_indx;
+        }
       }
     }
   }
@@ -62,11 +71,6 @@ export default class GK {
     }
     
     return bands;
-  }
-
-  _delete_tuple(i) {
-    var merged = {v: this.S[i+1].v, g: this.S[i].g + this.S[i+1].g, delta: this.S[i+1].delta};
-    this.S.splice(i, 2, merged);
   }
 
   _do_insert(v) {
