@@ -23,7 +23,7 @@ tape("GK e=0.1 inner state", function(test) {
 
 tape("GK e=0.1 stress", function(test) {
     var arr = [];
-    for (var i = 0; i < 1000; ++i)
+    for (var i = 0; i < 10000; ++i)
         arr.push(Math.random());
 
     var epsilon = 0.1;
@@ -42,23 +42,23 @@ tape("GK e=0.1 stress", function(test) {
 
 tape("GK._construct_band_lookup", function(test) {
     test.deepEquals(sp.GK._construct_band_lookup(0), [0]);
-    test.deepEquals(sp.GK._construct_band_lookup(1), [-1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(2), [-1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(3), [-1, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(4), [-1, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(5), [-1, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(6), [-1, 2, 2, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(7), [-1, 2, 2, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(8), [-1, 3, 3, 3, 3, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(9), [-1, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(10), [-1, 3, 3, 3, 3, 2, 2, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(11), [-1, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(12), [-1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(13), [-1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(14), [-1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(15), [-1, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(16), [-1, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(24), [-1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 0]);
-    test.deepEquals(sp.GK._construct_band_lookup(25), [-1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(1), [sp.GK_MAX_BAND, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(2), [sp.GK_MAX_BAND, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(3), [sp.GK_MAX_BAND, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(4), [sp.GK_MAX_BAND, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(5), [sp.GK_MAX_BAND, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(6), [sp.GK_MAX_BAND, 2, 2, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(7), [sp.GK_MAX_BAND, 2, 2, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(8), [sp.GK_MAX_BAND, 3, 3, 3, 3, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(9), [sp.GK_MAX_BAND, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(10), [sp.GK_MAX_BAND, 3, 3, 3, 3, 2, 2, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(11), [sp.GK_MAX_BAND, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(12), [sp.GK_MAX_BAND, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(13), [sp.GK_MAX_BAND, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(14), [sp.GK_MAX_BAND, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(15), [sp.GK_MAX_BAND, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(16), [sp.GK_MAX_BAND, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(24), [sp.GK_MAX_BAND, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 0]);
+    test.deepEquals(sp.GK._construct_band_lookup(25), [sp.GK_MAX_BAND, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 0]);
     test.end();
 })

@@ -1,3 +1,5 @@
+export const GK_MAX_BAND = 999999;
+
 export default class GK {
   constructor(epsilon) {
     this.epsilon = epsilon;
@@ -42,7 +44,7 @@ export default class GK {
 
   static _construct_band_lookup(two_epsilon_n) {
     var bands = Array(two_epsilon_n + 1);
-    bands[0] = -1; // delta = 0 is its own band
+    bands[0] = GK_MAX_BAND; // delta = 0 is its own band
     bands[two_epsilon_n] = 0; // delta = two_epsilon_n is band 0 by definition
 
     var p = Math.floor(two_epsilon_n);
@@ -69,13 +71,7 @@ export default class GK {
 
   _do_insert(v) {
     var i = this._find_insertion_index(v);
-    var delta;
-    if (this.n < this.one_over_2e)
-      delta = 0;
-    else if (i == 0 || i == this.S.length)
-      delta = 0;
-    else
-      delta = Math.floor(2 * this.epsilon * this.n) - 1;
+    var delta = this._determine_delta(i);
     var tuple = {v: v, g: 1, delta: delta};
     this.S.splice(i, 0, tuple);
   }
@@ -85,5 +81,14 @@ export default class GK {
     while (i < this.S.length && v >= this.S[i].v)
       ++i;
     return i;
+  }
+
+  _determine_delta(i) {
+    if (this.n < this.one_over_2e)
+      return 0;
+    else if (i == 0 || i == this.S.length)
+      return 0;
+    else
+      return Math.floor(2 * this.epsilon * this.n) - 1;
   }
 }
