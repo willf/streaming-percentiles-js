@@ -24,9 +24,7 @@ binaries](https://sengelha.github.io/streaming-percentiles-js/streamingPercentil
 <script src="//sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.min.js"></script>
 <script>
 var gk = new streamingPercentiles.GK(0.1);
-for (var i = 0; i < 1000; ++i)
-    gk.insert(Math.random());
-var p50 = gk.quantile(0.5); // Approximate median
+...
 </script>
 ```
 
