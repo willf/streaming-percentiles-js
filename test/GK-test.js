@@ -44,7 +44,7 @@ tape("GK e=0.1 stress", function(test) {
     var gk = new sp.GK(0.1);
     for (var i = 0; i < 10000; ++i) {
         gk.insert(Math.random());
-        for (var q = 0.1; q < 1; q += 0.1) {
+        for (var q = 0.01; q < 1; q += 0.01) {
             var val = gk.quantile(q);
             // We're just trying to make sure gk.quantile
             // doesn't throw an exception.

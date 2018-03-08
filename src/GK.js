@@ -57,8 +57,7 @@ export default class GK {
     bands[two_epsilon_n] = 0; // delta = two_epsilon_n is band 0 by definition
 
     var p = Math.floor(two_epsilon_n);
-    // Need to go from [1, ceil(log(2en)) + 1] to handle 2en = 16 cases (among others)
-    for (var alpha = 1; alpha <= Math.ceil(Math.log(two_epsilon_n)) + 1; ++alpha) {
+    for (var alpha = 1; alpha <= Math.ceil(Math.log2(two_epsilon_n)); ++alpha) {
         var two_alpha_minus_1 = Math.pow(2, alpha-1);
         var two_alpha = Math.pow(2, alpha);
         var lower = p - two_alpha - (p % two_alpha);
