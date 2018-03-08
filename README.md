@@ -52,7 +52,7 @@ var p95 = gk.quantile(0.95); // Approx. 95th percentile
 ### class GK(*epsilon*)
 
 Construct an object which implements the Greenwald-Khanna streaming
-percentile algorithm.
+percentile algorithm with allowable error *epsilon*.
 
 Example:
 ```javascript
@@ -71,8 +71,8 @@ gk.insert(Math.random());
 
 ### *gk*.quantile(*phi*)
 
-Compute the approximate quantile at `phi`.  For example, the 95th
-percentile corresponds to `phi` = 0.95.
+Compute the approximate quantile at *phi*.  For example, the 95th
+percentile corresponds to *phi* = 0.95.
 
 Example:
 ```javascript
