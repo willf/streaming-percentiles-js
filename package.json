@@ -24,7 +24,7 @@
   "scripts": {
     "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -f umd -n streamingPercentiles -o build/streamingPercentiles.v1.js -- index.js",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "prepare": "npm run test && uglifyjs -b beautify=false,preamble=\"'$(preamble)'\" build/stremaingPercentiles.v1.js -c -m -o build/streamingPercentiles.v1.min.js",
+    "prepare": "npm run test && uglifyjs -b beautify=false,preamble=\"'$(preamble)'\" build/streamingPercentiles.v1.js -c -m -o build/streamingPercentiles.v1.min.js",
     "postpublish": "git push && git push --tags && zip -j build/streamingPercentiles.v1.zip -- LICENSE README.md build/streamingPercentiles.v1.js build/streamingPercentiles.v1.min.js && echo \"Don't forget to publish to sengelha.github.io\""
   },
   "devDependencies": {
@@ -32,6 +32,6 @@
     "package-preamble": "0.1.0",
     "rollup": "0.43",
     "tape": "4",
-    "uglify-js": "3"
+    "uglify-es": "3"
   }
 }
