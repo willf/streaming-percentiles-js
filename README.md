@@ -32,7 +32,10 @@ percentile algorithm:
 ```javascript
 var sp = require('streaming-percentiles');
 
-var epsilon = 0.1; // Allowable error.
+// epsilon is allowable error.  As epsilon becomes smaller, the
+// accuracy of the approximations improves, but the class consumes
+// more memory.
+var epsilon = 0.1;
 var gk = new sp.GK(epsilon);
 for (var i = 0; i < 1000; ++i)
     gk.insert(Math.random());
