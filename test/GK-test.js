@@ -26,11 +26,14 @@ tape("GK e=0.1 stress", function(test) {
     for (var i = 0; i < 1000; ++i)
         arr.push(Math.random());
 
-    var gk = new sp.GK(0.1);
+    var epsilon = 0.1;
+    var gk = new sp.GK(epsilon);
     for (var i = 0; i < arr.length; ++i) {
         gk.insert(arr[i]);
         for (var q = 0.1; q < 1; q += 0.1) {
             var val = gk.quantile(q);
+            // The 'correct' value should be q, +/- some error,
+            // but the error can be huge, especially early on.
             test.ok(val > 0 && val < 1);
         }
     }
