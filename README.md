@@ -17,8 +17,9 @@ code](https://github.com/sengelha/streaming-percentiles-js/releases/latest).
 You can also load directly from
 [unpkg.com](https://unpkg.com/streaming-percentiles/).
 
-For convenience, you can use the [latest release
-binaries](https://sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.zip) directly from a web browser:
+For convenience, you can also use the [latest release
+binaries](https://sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.zip)
+directly from a web browser:
 
 ```html
 <script src="//sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.min.js"></script>
