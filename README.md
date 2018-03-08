@@ -18,10 +18,16 @@ You can also load directly from
 [unpkg.com](https://unpkg.com/streaming-percentiles/).
 
 For convenience, you can use the [latest release
-binaries](https://sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.zip):
+binaries](https://sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.zip) directly from a web browser:
 
 ```html
-TODO
+<script src="//sengelha.github.io/streaming-percentiles-js/streamingPercentiles.v1.min.js"></script>
+<script>
+var gk = new streamingPercentiles.GK(0.1);
+for (var i = 0; i < 1000; ++i)
+    gk.insert(Math.random());
+var p50 = gk.quantile(0.5); // Approximate median
+</script>
 ```
 
 ## Example
